@@ -1,0 +1,99 @@
+<!-- 
+Template Driven Form ANd Validation:
+If u r using Validation then u have to do 3 types 
+1. For Adding css in signin.component.scss
+input.ng-touched.ng-invalid{
+border: 1px solid red;
+}
+2. In Submit button if u r disable it tht means if Your Form is not valid then disable it
+ <button type="submit" class="btn btn-primary" [disabled]="!signInForm.valid">Submit</button>
+
+ 3.Custom Field Level Validation-Show Hide Error messages
+ For example
+  <small class="form-text text-muted" *ngIf="emailAddressField.touched && !emailAddressField.valid">Enter the valid
+    mail.</small>
+ -->
+
+<h2>Signin- using Template Driven form</h2>
+
+<div class="container">
+  <form #signInForm="ngForm" (ngSubmit)="loginUser(signInForm)">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        name="emailAddressField"
+        ngModel email
+        required
+        #emailAddressField="ngModel"
+      />
+      <small
+        class="form-text text-muted"
+        *ngIf="emailAddressField.touched && !emailAddressField.valid"
+        >Enter the valid mail.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Password"
+        name="passwordField"
+        ngModel
+        required
+        #passwordField="ngModel"
+      />
+      <small
+        class="form-text text-muted"
+        *ngIf="passwordField.touched && !passwordField.valid"
+        >Enter the valid password .</small
+      >
+    </div>
+    <div class="form-group form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="exampleCheck1"
+        name="termField"
+        ngModel required
+      />
+      <label class="form-check-label" for="exampleCheck1">Agree to Terms</label>
+    </div>
+    <div class="form-group form-check">
+      <input
+        type="radio"
+        class="form-check-input"
+        value="male"
+        id="genderField"
+        name="genderField"
+        ngModel
+      />
+      <label class="form-check-label" for="exampleCheck1">Male</label>
+    </div>
+    <div class="form-group form-check">
+      <input
+        type="radio"
+        class="form-check-input"
+        value="female"
+        id="genderField"
+        name="genderField"
+        ngModel
+      />
+      <label class="form-check-label" for="exampleCheck1">FeMale</label>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!signInForm.valid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
